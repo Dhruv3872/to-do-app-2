@@ -7,3 +7,7 @@
   - Axios
   - Mock Adapter
   - Exception handling
+
+## Changes in this commit:
+
+- Added a not-so-sensible `theme` component (so that we can see its application to the app clearly) and provided it to the app using `ThemeProvider`.
