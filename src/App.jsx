@@ -1,12 +1,24 @@
 // import "./App.css";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./themes/theme";
-import { Typography } from "@mui/material";
+import Login from "./components/auth/Login/Login";
+import { Navigate, Route, Routes } from "react-router";
+import Register from "./components/auth/Register/Register";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Typography>I would like to buy a hamburger.</Typography>
+      {/* <Grid
+        container
+        component="main"
+        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      > */}
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+      {/* </Grid> */}
     </ThemeProvider>
   );
 }

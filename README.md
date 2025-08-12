@@ -8,6 +8,12 @@
   - Mock Adapter
   - Exception handling
 
-## Changes in this commit:
+## Changes introduced in this commit:
 
-- Added a not-so-sensible `theme` component (so that we can see its application to the app clearly) and provided it to the app using `ThemeProvider`.
+- Added some `emotion` and `mui` packages to style the app.
+- Added `react-router` package to provide proper scalable routing to the app.
+- Wrapped `App` component around `react-router`'s `BrowserRouter` in `index.jsx`  
+  to apply routing using `react-router` for the entire app.
+- Added `Routes` to the `App` component including a _catch-all_ route.
+- Added `Login` and `LoginForm` components to offer a Login page.
+- Added `Register` component to offer a Register page to the user.
