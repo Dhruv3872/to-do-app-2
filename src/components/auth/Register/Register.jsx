@@ -8,9 +8,22 @@ import {
   Link,
 } from "@mui/material";
 import LockOutlineIcon from "@mui/icons-material/LockOutline";
+import useAuth from "../../../services/useAuth";
 
 const Register = () => {
-  function handleRegister() {}
+  const { register } = useAuth();
+  const handleRegister = async (event) => {
+    event.preventDefault();
+    // Get form data:
+    const formData = new FormData(event.currentTarget);
+    const inputFields = {
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+    await register(inputFields);
+  };
   function handleAccount() {}
   /* function submit(formData) {
     const query = formData.get("query");
@@ -40,7 +53,7 @@ const Register = () => {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <form noValidate>
+          <form onSubmit={handleRegister}>
             <TextField
               onChange={(event) => handleAccount("firstName", event)}
               variant="outlined"
@@ -91,7 +104,7 @@ const Register = () => {
               color="primary"
               onClick={handleRegister}
             >
-              Login
+              Register
             </Button>
             <Grid container>
               <Grid item>

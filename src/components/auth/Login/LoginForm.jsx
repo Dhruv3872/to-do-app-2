@@ -8,6 +8,7 @@ import {
   Link,
 } from "@mui/material";
 import LockOutlineIcon from "@mui/icons-material/LockOutline";
+import useAuth from "../../../services/useAuth";
 // import theme from "../../../themes/theme";
 // import Avatar from "@mui/material";
 // import Avatar from "@mui/material";
@@ -22,8 +23,20 @@ import LockOutlineIcon from "@mui/icons-material/LockOutline";
 })); */
 
 const LoginForm = () => {
+  const { login } = useAuth();
   //   const classes = useStyles();
-  function handleLogin() {}
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    console.log(event.currentTarget);
+    // Get form data:
+    const formData = new FormData(event.currentTarget);
+    const inputFields = {
+      username: formData.get("username"),
+      password: formData.get("password"),
+    };
+    console.log(inputFields);
+    await login(inputFields);
+  };
   function handleAccount() {}
   /* function submit(formData) {
     const query = formData.get("query");
@@ -39,13 +52,7 @@ const LoginForm = () => {
       justifyContent="center"
       sx={{ minHeight: "100vh" }}
     >
-      {/* <form action={submit}>
-      <input name="email" />
-      <input name="password" />
-      <button type="submit">Search</button>
-    </form> */}
       <Grid
-        item
         component={Paper}
         elevation={1}
         square
@@ -58,16 +65,16 @@ const LoginForm = () => {
           <Typography component="h1" variant="h5">
             Log in
           </Typography>
-          <form noValidate>
+          <form method="post" onSubmit={handleLogin} noValidate>
             <TextField
-              onChange={(event) => handleAccount("email", event)}
+              onChange={(event) => handleAccount("username", event)}
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email"
-              name="email"
+              id="username"
+              label="Username"
+              name="username"
               autoFocus
             />
             <TextField
@@ -82,17 +89,11 @@ const LoginForm = () => {
               id="password"
               autoComplete="current-password"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={handleLogin}
-            >
+            <Button type="submit" fullWidth variant="contained" color="primary">
               Login
             </Button>
             <Grid container>
-              <Grid item>
+              <Grid>
                 <Link href="/register" variant="body2">
                   Don't have an account? Register.
                 </Link>
