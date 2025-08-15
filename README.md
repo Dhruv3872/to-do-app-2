@@ -10,9 +10,9 @@
 
 ## Changes introduced in this commit:
 
-- Added `redux`, `react-redux`, and `@reduxjs/toolkit` packages to incorporate  
-  Redux state management in our app.
-- Created and initialised a Redux store with an empty `reducer` object.
-- Provided the store to the entire app by wrapping the `Provider` component  
-  offered by `react-redux` around the `App` component.
-- Renamed a redundant service to `useToDos` to put To-Dos related functions in there.
+- Added `todosSlice` Redux state slice to dynamically load the user's to-do list  
+  after fetching it from the server, to add a new to-do, to delete any given to-do, etc.
+- Added the slice reducer to the store.
+- Made an API call to the temporarily hard-coded user id's endpoint and saved the  
+  obtained to-do list in the state slice in `useToDos` hook.
+- Modified `Dashboard` component to run the API call and state actions.

@@ -1,0 +1,37 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+export const todosSlice = createSlice({
+  name: "todos",
+  initialState: [], // An object containing empty array named 'todos' as the initial state.
+  reducers: {
+    // Save the fetched to-dos in the state slice:
+    saveToDos: (state, action) => {
+      const todos_array = []; // Begin with an empty array instead of using the initial state.
+      // Loop through the action payload:
+      for (let i = 0; i < action.payload.length; i++) {
+        // console.log(action.)
+        // Add the current to-do to the todos_array array by accessing the 'todo' property of the current todo object:
+        todos_array.push(action.payload[i].todo);
+      }
+      console.log(typeof todos_array);
+      console.log(`obtained array: ${todos_array}`);
+      // Replace the state slice with todos_array:
+      return todos_array;
+    },
+    getToDos: (state) => {
+      return state.value;
+    },
+    addToDo: (state, action) => {
+      // Add the given to-do to the state slice value:
+      state.value.push(action.payload);
+    },
+    deleteToDo: (state, action) => {
+      // Replace the state slice with the filtered array:
+      return state.value.filter((item) => item !== action.payload);
+    },
+  },
+});
+
+export const { saveToDos, getToDos, addToDo, deleteToDo } = todosSlice.actions;
+
+export default todosSlice.reducer;
