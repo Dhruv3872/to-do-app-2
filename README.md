@@ -10,6 +10,4 @@
 
 ## Changes introduced in this commit:
 
-- Created `ProtectedRoutes` component to protect `/dashboard` route from being accessed by  
-  unauthenticated users.
-- Made changes in the `App` component to implement protected routing functionality.
+- Implmented log out functionality in the app for logged in users.

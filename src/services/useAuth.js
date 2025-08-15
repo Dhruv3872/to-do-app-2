@@ -78,7 +78,15 @@ function useAuth() {
     return false;
   };
 
-  return { register, login, getUser };
+  // Log the user out:
+  const logout = () => {
+    // Delete the JWT access token from the browser:
+    deleteToken();
+    // Navigate to the login page:
+    navigate("/login");
+  };
+
+  return { register, login, getUser, logout };
 }
 
 export default useAuth;
