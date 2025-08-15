@@ -12,7 +12,7 @@ function useAuth() {
   };
 
   const saveToken = (token) => {
-    window.localStorage.setItem("JWTOKEN", JSON.stringify(token));
+    window.localStorage.setItem("JWTOKEN", token);
   };
 
   const deleteToken = () => {
@@ -63,13 +63,16 @@ function useAuth() {
     if (token) {
       const api_getUser_url = api_base_url + api_getUser_endpoint;
       const resp = await axios.get(api_getUser_url, {
-        headers: { Authorization: "Bearer ".concat(getToken()) },
+        headers: { Authorization: `Bearer ${token}` },
       });
       if (resp.status === 200) {
         console.log("username: ".concat(resp.data.username));
         // A logged-in user exists. Hence, return the user:
-        return resp.data;
+        return resp.data; // user JSON object.
       }
+      // If the response status was not 200, the user doesn't exist.
+      // Return false.
+      return false;
     }
     // If you have reached here, definitely, a logged-in user does not exist. Return false:
     return false;
