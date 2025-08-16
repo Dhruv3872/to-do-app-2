@@ -25,7 +25,7 @@ export const todosSlice = createSlice({
     },
     deleteToDo: (state, action) => {
       // Replace the state slice with the filtered array:
-      return state.value.filter((item) => item !== action.payload);
+      return state.filter((item) => item !== action.payload);
     },
   },
 });
