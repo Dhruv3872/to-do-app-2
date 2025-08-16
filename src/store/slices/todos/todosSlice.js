@@ -18,12 +18,10 @@ export const todosSlice = createSlice({
       // Replace the state slice with todos_array:
       return todos_array;
     },
-    getToDos: (state) => {
-      return state.value;
-    },
     addToDo: (state, action) => {
-      // Add the given to-do to the state slice value:
-      state.value.push(action.payload);
+      console.log(action.payload);
+      // Add the given to-do to the state slice:
+      state.push(action.payload);
     },
     deleteToDo: (state, action) => {
       // Replace the state slice with the filtered array:

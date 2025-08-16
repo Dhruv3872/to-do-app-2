@@ -10,9 +10,10 @@
 
 ## Changes introduced in this commit:
 
-- Added `todosSlice` Redux state slice to dynamically load the user's to-do list  
-  after fetching it from the server, to add a new to-do, to delete any given to-do, etc.
-- Added the slice reducer to the store.
-- Made an API call to the temporarily hard-coded user id's endpoint and saved the  
-  obtained to-do list in the state slice in `useToDos` hook.
-- Modified `Dashboard` component to run the API call and state actions.
+- Created a user state slice to save the user details received from the server  
+  so that user-relevant to-do list can be fetched from the server using `userId`.
+- Created `AddTask` mui `Dialog` component to add a task to the list of tasks;  
+  Added this component in the `Dashboard` component and made arrangements to ensure  
+  proper opening and closing of the dialog.
+- Solved the error preventing the tasks from appearing as a dynamic list using  
+  mui `List` component on the dashboard.

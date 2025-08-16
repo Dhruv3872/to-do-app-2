@@ -1,11 +1,16 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { saveToDos } from "../store/slices/todos/todosSlice";
+import { useSelector } from "react-redux";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const GET_USER_TODOS_ENDPOINT = import.meta.env.VITE_API_GET_USER_TODOS_ENDPONT;
 function useToDos() {
   const dispatch = useDispatch();
+  const userId = useSelector((state) => state.user.value.id);
+  // const userId = user.id;
+  const GET_USER_TODOS_ENDPOINT =
+    import.meta.env.VITE_API_GET_USER_TODOS_ENDPONT.concat(userId);
+
   const API_FETCHTODOS_URL = API_BASE_URL.concat(GET_USER_TODOS_ENDPOINT);
 
   const fetchAndSaveToDos = async () => {
