@@ -9,12 +9,9 @@ export const todosSlice = createSlice({
       const todos_array = []; // Begin with an empty array instead of using the initial state.
       // Loop through the action payload:
       for (let i = 0; i < action.payload.length; i++) {
-        // console.log(action.)
         // Add the current to-do to the todos_array array by accessing the 'todo' property of the current todo object:
         todos_array.push(action.payload[i].todo);
       }
-      console.log(typeof todos_array);
-      console.log(`obtained array: ${todos_array}`);
       // Replace the state slice with todos_array:
       return todos_array;
     },

@@ -3,7 +3,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useAuth from "../services/useAuth";
-import useToDos from "../services/useToDos";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddTask from "./AddTask";
@@ -13,13 +12,13 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const { logout } = useAuth();
-  const { fetchAndSaveToDos } = useToDos();
   const dispatch = useDispatch();
+  const userId = useSelector((state) => state.user.value.id);
   const todos = useSelector((state) => state.todos);
 
   useEffect(() => {
     async function fetchAndSave() {
-      await fetchAndSaveToDos();
+      dispatch({ type: "USER_TODOS_FETCH_REQUESTED", payload: userId });
       setLoading(false);
     }
     fetchAndSave();
