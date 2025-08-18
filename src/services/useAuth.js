@@ -46,12 +46,16 @@ function useAuth() {
     console.log(request_body);
     const api_login_url = api_base_url + api_login_endpoint;
     console.log(api_login_url);
-    const resp = await axios.post(api_login_url, request_body, {
-      headers: { "Content-Type": "application/json" },
-    });
-    console.log(resp.data);
-    saveToken(resp.data.accessToken);
-    navigate("/dashboard");
+    try {
+      const resp = await axios.post(api_login_url, request_body, {
+        headers: { "Content-Type": "application/json" },
+      });
+      console.log(resp.data);
+      saveToken(resp.data.accessToken);
+      navigate("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Get the current user by making an API call to dummyjson with the JWT access token
