@@ -21,8 +21,8 @@ const AddTask = ({ open, onCancel }) => {
   };
 
   return (
-    <Dialog open={open} onClose={onCancel}>
-      <DialogTitle>Add Task</DialogTitle>
+    <Dialog open={open} onClose={onCancel} fullWidth>
+      <DialogTitle>Add a Task</DialogTitle>
       <DialogContent>
         <form onSubmit={handleAddTask} id="addTask-from">
           <TextField

@@ -10,9 +10,10 @@
 
 ## Changes introduced in this commit:
 
-- Changed the theme color because `red` seemed inapropriate.
-- Commented `App.css` since its contents are not used anywhere in the app as of now.
-- Made changes to the `body` HTML element type selector in `index.css` to center  
-  the body content with respect to the page.
-- Removed commented and/or redundant code and added styling-related code to  
-  `Login`, `LoginForm`, and `Register` components to give the app a modest material-design look.
+- Increased the width of the `AddTask` `Dialog` box.
+- Added `AppBar` mui component to give title to the Dashboard page,  
+  to have a header-like component at the top of the page, and  
+  to shift the Logout button to the top right corner of the page.
+- Added Grid, margin, padding, width, height, and alignment to  
+  the `Dashboard` component to give a modest material-design look  
+  to the dashboard page.
