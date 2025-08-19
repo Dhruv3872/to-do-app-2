@@ -22,7 +22,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const { logout } = useAuth();
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.user.value.id);
+  const userId = useSelector((state) => state.user.id);
   const todos = useSelector((state) => state.todos);
 
   useEffect(() => {

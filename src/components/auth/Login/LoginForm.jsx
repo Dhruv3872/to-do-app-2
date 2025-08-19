@@ -8,10 +8,10 @@ import {
   Link,
 } from "@mui/material";
 import LockOutlineIcon from "@mui/icons-material/LockOutline";
-import useAuth from "../../../services/useAuth";
+import { useDispatch } from "react-redux";
 
 const LoginForm = () => {
-  const { login } = useAuth();
+  const dispatch = useDispatch();
   const handleLogin = async (event) => {
     event.preventDefault();
     console.log(event.currentTarget);
@@ -22,7 +22,7 @@ const LoginForm = () => {
       password: formData.get("password"),
     };
     console.log(inputFields);
-    await login(inputFields);
+    dispatch({ type: "USER_LOGIN_REQUESTED", payload: inputFields });
   };
   return (
     <Grid
@@ -67,6 +67,7 @@ const LoginForm = () => {
             label="Username"
             name="username"
             autoFocus
+            autoComplete="username"
             sx={{ mb: "20px" }}
           />
           <TextField

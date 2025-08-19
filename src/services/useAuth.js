@@ -2,17 +2,14 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 
 function useAuth() {
+  const navigate = useNavigate();
+  // const dispatch = useDispatch();
   const api_base_url = import.meta.env.VITE_API_BASE_URL;
   const api_login_endpoint = import.meta.env.VITE_API_AUTH_LOGIN_ENDPOINT;
   const api_getUser_endpoint = import.meta.env.VITE_API_GET_USER_ENDPOINT;
-  const navigate = useNavigate();
 
   const getToken = () => {
     return window.localStorage.getItem("JWTOKEN");
-  };
-
-  const saveToken = (token) => {
-    window.localStorage.setItem("JWTOKEN", token);
   };
 
   const deleteToken = () => {
@@ -37,26 +34,38 @@ function useAuth() {
     }
   };
 
-  const login = async (inputFields) => {
+  const authenticateUser = async (inputFields) => {
     console.log(inputFields);
-    const request_body = {
+    /*     const request_body = {
       username: inputFields.username,
       password: inputFields.password,
     };
-    console.log(request_body);
+    console.log(request_body); */
     const api_login_url = api_base_url + api_login_endpoint;
     console.log(api_login_url);
-    try {
-      const resp = await axios.post(api_login_url, request_body, {
-        headers: { "Content-Type": "application/json" },
-      });
-      console.log(resp.data);
-      saveToken(resp.data.accessToken);
-      navigate("/dashboard");
-    } catch (error) {
-      console.log(error);
-    }
+    // `try-catch` has been implemented in the saga:
+    return await axios.post(api_login_url, inputFields, {
+      headers: { "Content-Type": "application/json" },
+    });
+
+    // console.log(resp.data);
+    // saveToken(resp.data.accessToken);
+    // navigate("/dashboard");
+    // } catch (error) {
+    // This block is executed upon error, including AxiosError.
+    // console.log(error);
+    // }
   };
+
+  /**
+   * If the login is successful, the following function will store the received access token
+   * in the local storage and then redirect the user to the dashboard page:
+   * @param {*} accessToken
+   */
+  /*  const saveTokenAndNavigateToDashboard = (accessToken) => {
+    saveToken(accessToken);
+    navigate("/dashboard");
+  }; */
 
   // Get the current user by making an API call to dummyjson with the JWT access token
   // by obtaning it from localStorage:
@@ -90,7 +99,12 @@ function useAuth() {
     navigate("/login");
   };
 
-  return { register, login, getUser, logout };
+  return {
+    register,
+    authenticateUser,
+    getUser,
+    logout,
+  };
 }
 
 export default useAuth;

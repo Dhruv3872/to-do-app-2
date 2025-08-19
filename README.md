@@ -10,10 +10,10 @@
 
 ## Changes introduced in this commit:
 
-- Increased the width of the `AddTask` `Dialog` box.
-- Added `AppBar` mui component to give title to the Dashboard page,  
-  to have a header-like component at the top of the page, and  
-  to shift the Logout button to the top right corner of the page.
-- Added Grid, margin, padding, width, height, and alignment to  
-  the `Dashboard` component to give a modest material-design look  
-  to the dashboard page.
+- Added basic Exception handling to the app.
+- Implemented more appropriate use of Redux-Saga.
+- Added `GlobalMessage` component to show error message to the customer;  
+  Added `message` Redux state slice to enable the alert message functionality.
+- Added `PublicRoutes` component with the idea of implementing navigation to  
+  protected routes if the user is logged in. Still working on it.
+-
