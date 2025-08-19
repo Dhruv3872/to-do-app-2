@@ -23,9 +23,10 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  /* To make the body contents centered to the page: */
   display: flex;
-  place-items: center;
+  align-items: center;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
 }

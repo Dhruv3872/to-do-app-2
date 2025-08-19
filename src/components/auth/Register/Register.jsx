@@ -25,96 +25,103 @@ const Register = () => {
     await register(inputFields);
   };
   function handleAccount() {}
-  /* function submit(formData) {
-    const query = formData.get("query");
-    alert(`You searched for '${query}'`);
-  } */
   return (
     <Grid
       container
-      component="main"
-      display="flex"
       direction="column"
-      alignItems="center"
-      justifyContent="center"
-      sx={{ minHeight: "100vh" }}
+      component={Paper}
+      elevation={3}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        maxWidth: "600px",
+        margin: "0 auto",
+        p: 3,
+      }}
     >
+      <Grid size={1}>
+        <Avatar sx={{ bgcolor: "#429bf5" }}>
+          <LockOutlineIcon />
+        </Avatar>
+      </Grid>
+      <Grid size={3}>
+        <Typography component="h1" variant="h5" textAlign="center">
+          Register
+        </Typography>
+      </Grid>
       <Grid
-        item
-        component={Paper}
-        elevation={1}
-        square
-        sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+        size={12}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        <div>
-          <Avatar>
-            <LockOutlineIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+        <form onSubmit={handleRegister}>
+          <TextField
+            onChange={(event) => handleAccount("firstName", event)}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="firstName"
+            label="First Name"
+            name="firstName"
+            autoFocus
+            sx={{ mb: "20px" }}
+          />
+          <TextField
+            onChange={(event) => handleAccount("lastName", event)}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="firstlastNameName"
+            label="Last Name"
+            name="lastName"
+            sx={{ mb: "20px" }}
+          />
+          <TextField
+            onChange={(event) => handleAccount("email", event)}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email"
+            name="email"
+            sx={{ mb: "20px" }}
+          />
+          <TextField
+            onChange={(event) => handleAccount("password", event)}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            sx={{ mb: "20px" }}
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={handleRegister}
+            sx={{ mb: "20px" }}
+          >
             Register
-          </Typography>
-          <form onSubmit={handleRegister}>
-            <TextField
-              onChange={(event) => handleAccount("firstName", event)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="firstName"
-              label="First Name"
-              name="firstName"
-              autoFocus
-            />
-            <TextField
-              onChange={(event) => handleAccount("lastName", event)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="firstlastNameName"
-              label="Last Name"
-              name="lastName"
-            />
-            <TextField
-              onChange={(event) => handleAccount("email", event)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              name="email"
-            />
-            <TextField
-              onChange={(event) => handleAccount("password", event)}
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={handleRegister}
-            >
-              Register
-            </Button>
-            <Grid container>
-              <Grid item>
-                <Link href="/" variant="body2">
-                  Already a user? Log in.
-                </Link>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
+          </Button>
+          <Grid sx={{ m: "0px 20px 5px 5px" }}>
+            <Link href="/" variant="body2">
+              Already a user? Log in.
+            </Link>
+          </Grid>
+        </form>
       </Grid>
     </Grid>
   );
