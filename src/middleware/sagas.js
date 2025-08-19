@@ -14,7 +14,7 @@ function* processLoginRequest(action) {
   try {
     const resp = yield call(authenticateUser, action.payload); // where
     // action.payload would be `inputFields`.
-    console.log(resp.data);
+    // console.log(resp.data);
     // If the above call succeeds, dispatch 'LOGIN_USER_SUCCEEDED' action:
     // yield put({ type: "LOGIN_USER_SUCCEEDED", resp: resp });
     // Save the token in the local storage and save the username in the user state slice:
