@@ -11,6 +11,7 @@ import { addToDo } from "../store/slices/todos/todosSlice";
 
 const AddTask = ({ open, onCancel }) => {
   const dispatch = useDispatch();
+  // alert("78900");
   const handleAddTask = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);

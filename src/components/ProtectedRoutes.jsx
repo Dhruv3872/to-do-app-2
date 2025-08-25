@@ -12,7 +12,9 @@ const ProtectedRoutes = ({ children }) => {
   useEffect(() => {
     async function setAuthentication() {
       const user = await getUser();
+      // alert("456");
       if (user) {
+        // alert("123");
         dispatch(saveUser(user));
         setAuthenticated(true);
         console.log("The user exists.");
