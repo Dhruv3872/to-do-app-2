@@ -10,4 +10,4 @@
 
 ## Changes introduced in this commit:
 
-- Initiation of a new branch to add a dopdown menu on the dashboard page.
+- Put components in their relevant directories for maintaining a proper project structure.

@@ -4,10 +4,10 @@ import theme from "./themes/theme";
 import Login from "./components/auth/Login/Login";
 import { Navigate, Route, Routes } from "react-router";
 import Register from "./components/auth/Register/Register";
-import Dashboard from "./components/Dashboard";
-import ProtectedRoutes from "./components/ProtectedRoutes";
-import PublicRoutes from "./components/PublicRoutes";
-import GlobalMessage from "./components/GlobalMessage";
+import Dashboard from "./components/Dashboard/Dashboard";
+import ProtectedRoutes from "./components/global/ProtectedRoutes";
+import PublicRoutes from "./components/global/PublicRoutes";
+import GlobalMessage from "./components/global/GlobalMessage";
 
 function App() {
   return (
