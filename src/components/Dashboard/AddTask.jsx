@@ -7,7 +7,7 @@ import {
   Button,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { addToDo } from "../store/slices/todos/todosSlice";
+import { addToDo } from "@/store/slices/todos/todosSlice";
 
 const AddTask = ({ open, onCancel }) => {
   const dispatch = useDispatch();

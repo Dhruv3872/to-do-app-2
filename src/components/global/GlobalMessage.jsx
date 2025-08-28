@@ -1,6 +1,6 @@
 import { Alert, Snackbar } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { resetMessage } from "../store/slices/message/messageSlice";
+import { resetMessage } from "@/store/slices/message/messageSlice";
 
 const GlobalMessage = () => {
   const dispatch = useDispatch();

@@ -10,4 +10,5 @@
 
 ## Changes introduced in this commit:
 
-- Put components in their relevant directories for maintaining a proper project structure.
+- Transitioned to absolute paths from relative paths in imports.
+- Initiated a DropDown component to offer a dropdown menu in the `AppBar` component.

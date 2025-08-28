@@ -1,9 +1,9 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import fetchUserToDos from "../services/ToDoService";
-import { saveToken, authenticateUser } from "../services/AuthService";
-import { saveToDos } from "../store/slices/todos/todosSlice";
-import { showMessage } from "../store/slices/message/messageSlice";
-import { saveUser } from "../store/slices/user/userSlice";
+import fetchUserToDos from "@/services/ToDoService";
+import { saveToken, authenticateUser } from "@/services/AuthService";
+import { saveToDos } from "@/store/slices/todos/todosSlice";
+import { showMessage } from "@/store/slices/message/messageSlice";
+import { saveUser } from "@/store/slices/user/userSlice";
 
 function* fetchAndSaveUserToDos(action) {
   const todos = yield call(fetchUserToDos, action.payload);

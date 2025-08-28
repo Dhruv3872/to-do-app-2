@@ -8,7 +8,7 @@ import {
   Link,
 } from "@mui/material";
 import LockOutlineIcon from "@mui/icons-material/LockOutline";
-import useAuth from "../../../services/useAuth";
+import useAuth from "@/services/useAuth";
 
 const Register = () => {
   const { register } = useAuth();

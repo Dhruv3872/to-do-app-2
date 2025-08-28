@@ -11,11 +11,11 @@ import {
 import LogoutIcon from "@mui/icons-material/Logout";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
-import useAuth from "../services/useAuth";
+import useAuth from "@/services/useAuth";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddTask from "./AddTask";
-import { deleteToDo } from "../store/slices/todos/todosSlice";
+import { deleteToDo } from "@/store/slices/todos/todosSlice";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);

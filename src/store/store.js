@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import mySaga from "../middleware/sagas";
+import mySaga from "@/middleware/sagas";
 import todosReducer from "./slices/todos/todosSlice";
 import userReducer from "./slices/user/userSlice";
 import messageReducer from "./slices/message/messageSlice";

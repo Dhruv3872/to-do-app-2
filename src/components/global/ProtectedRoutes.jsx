@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router";
-import useAuth from "../services/useAuth";
+import useAuth from "@/services/useAuth";
 import { useDispatch } from "react-redux";
-import { saveUser } from "../store/slices/user/userSlice";
+import { saveUser } from "@/store/slices/user/userSlice";
 
 const ProtectedRoutes = ({ children }) => {
   const [loading, setLoading] = useState(true);
