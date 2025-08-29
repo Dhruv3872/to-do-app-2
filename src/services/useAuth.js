@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
 
 function useAuth() {
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const api_base_url = import.meta.env.VITE_API_BASE_URL;
   const api_login_endpoint = import.meta.env.VITE_API_AUTH_LOGIN_ENDPOINT;
   const api_getUser_endpoint = import.meta.env.VITE_API_GET_USER_ENDPOINT;
@@ -95,6 +96,8 @@ function useAuth() {
   const logout = () => {
     // Delete the JWT access token from the browser:
     deleteToken();
+    // Reset the entire app state:
+    dispatch({ type: "RESET_APP" });
     // Navigate to the login page:
     navigate("/login");
   };

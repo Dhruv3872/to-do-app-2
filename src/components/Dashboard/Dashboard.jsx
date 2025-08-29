@@ -8,19 +8,17 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import LogoutIcon from "@mui/icons-material/Logout";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
-import useAuth from "@/services/useAuth";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddTask from "./AddTask";
+import DropDown from "./DropDown";
 import { deleteToDo } from "@/store/slices/todos/todosSlice";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const { logout } = useAuth();
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.id);
   const todos = useSelector((state) => state.todos);
@@ -42,16 +40,12 @@ const Dashboard = () => {
   const handleClickDeleteTask = (todo) => {
     dispatch(deleteToDo(todo));
   };
-  const handleLogout = () => {
-    logout();
-  };
   return loading ? (
     <p>Loading to-do list...</p>
   ) : (
     <Grid
       container
       direction="column"
-      component="paper"
       elevation={1}
       sx={{
         width: "100vw", // To take the entire viewport width.
@@ -70,9 +64,7 @@ const Dashboard = () => {
             </Typography>
           </Grid>
           <Grid size={1} sx={{ textAlign: "end" }}>
-            <IconButton aria-label="Logout" onClick={handleLogout}>
-              <LogoutIcon />
-            </IconButton>
+            <DropDown />
           </Grid>
         </Toolbar>
       </AppBar>
