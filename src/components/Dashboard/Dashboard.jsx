@@ -4,7 +4,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddTask from "./AddTask";
-import Header from "@/components/global/Header/Header";
 import { deleteToDo } from "@/store/slices/todos/todosSlice";
 
 const Dashboard = () => {
@@ -41,10 +40,8 @@ const Dashboard = () => {
       sx={{
         width: "100vw", // To take the entire viewport width.
         height: "100vh", // // To take the entire viewport height.
-        p: 5,
       }}
     >
-      <Header />
       {todos.map((todo) => (
         <List>
           <ListItem

@@ -38,6 +38,8 @@ const DropDown = () => {
   };
   const handleMembersClick = () => {
     navigate("/members");
+    setAnchorEl(null); // Without setting it to null, the dropdown
+    // won't close even after the change of the ProtectedRoute Outlet.
   };
   const handleLogout = () => {
     logout();

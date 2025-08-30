@@ -21,22 +21,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoutes>
-                <Dashboard />
-              </ProtectedRoutes>
-            }
-          />
-          <Route
-            path="/members"
-            element={
-              <ProtectedRoutes>
-                <Members />
-              </ProtectedRoutes>
-            }
-          />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/members" element={<Members />} />
+          </Route>
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </ThemeProvider>
