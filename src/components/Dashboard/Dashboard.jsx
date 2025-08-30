@@ -1,19 +1,10 @@
-import {
-  AppBar,
-  Toolbar,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { Grid, List, ListItem, ListItemText, IconButton } from "@mui/material";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddTask from "./AddTask";
-import DropDown from "./DropDown";
+import Header from "@/components/global/Header/Header";
 import { deleteToDo } from "@/store/slices/todos/todosSlice";
 
 const Dashboard = () => {
@@ -53,21 +44,7 @@ const Dashboard = () => {
         p: 5,
       }}
     >
-      <AppBar
-        position="static"
-        sx={{ p: "2px 2px 2px 0px", m: "2px 2px 20px 0px" }}
-      >
-        <Toolbar>
-          <Grid size={11}>
-            <Typography variant="h6" component="div">
-              My To-Do List
-            </Typography>
-          </Grid>
-          <Grid size={1} sx={{ textAlign: "end" }}>
-            <DropDown />
-          </Grid>
-        </Toolbar>
-      </AppBar>
+      <Header />
       {todos.map((todo) => (
         <List>
           <ListItem

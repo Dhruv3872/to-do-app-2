@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   TextField,
   Dialog,
@@ -11,6 +12,15 @@ import { addToDo } from "@/store/slices/todos/todosSlice";
 
 const AddTask = ({ open, onCancel }) => {
   const dispatch = useDispatch();
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (open) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  }, [open]);
   // alert("78900");
   const handleAddTask = (event) => {
     event.preventDefault();
@@ -27,13 +37,15 @@ const AddTask = ({ open, onCancel }) => {
       <DialogContent>
         <form onSubmit={handleAddTask} id="addTask-from">
           <TextField
-            autoFocus
-            required
+            // autoFocus // autoFocus should work. It isn't for some reason I haven't yet cracked.
+            // Hence, the manual focus logic has been implemented. Courtesy: ChatGPT.
             fullWidth
+            required
             id="newTask"
             name="newTask"
             label="New Task"
             variant="standard"
+            inputRef={inputRef}
           ></TextField>
         </form>
       </DialogContent>
