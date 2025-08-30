@@ -6,7 +6,7 @@ import { Navigate, Route, Routes } from "react-router";
 import Register from "./components/auth/Register/Register";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Members from "./components/Members";
-import ProtectedRoutes from "./components/global/ProtectedRoutes";
+import ProtectedLayout from "./components/global/ProtectedLayout";
 import PublicRoutes from "./components/global/PublicRoutes";
 import GlobalMessage from "./components/global/GlobalMessage";
 
@@ -21,7 +21,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
-          <Route element={<ProtectedRoutes />}>
+          <Route element={<ProtectedLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/members" element={<Members />} />
           </Route>

@@ -12,7 +12,7 @@ const routeTitles = {
   "/members": "Members",
 };
 
-const ProtectedRoutes = () => {
+const ProtectedLayout = () => {
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
   const dispatch = useDispatch();
@@ -54,4 +54,4 @@ const ProtectedRoutes = () => {
   );
 };
 
-export default ProtectedRoutes;
+export default ProtectedLayout;
