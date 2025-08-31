@@ -10,5 +10,7 @@
 
 ## Changes introduced in this commit:
 
-- Renamed ProtectedRoutes to ProtectedLayout since it renders Outlet to show relevant components  
-  instead of being used as a route itself.
+- Added `JWTOKEN` as a constant to the `constants.js` file and  
+  used the constant instead of using typing the string value wherever needed.
+- Added `Redux-saga`'s `fork` model to implement concurrent API calls for  
+  `login` app flow.

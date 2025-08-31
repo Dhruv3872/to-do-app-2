@@ -2,6 +2,8 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 
+import { JWTOKEN } from "@/constants";
+
 function useAuth() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -9,11 +11,11 @@ function useAuth() {
   const api_getUser_endpoint = import.meta.env.VITE_API_GET_USER_ENDPOINT;
 
   const getToken = () => {
-    return window.localStorage.getItem("JWTOKEN");
+    return window.localStorage.getItem(JWTOKEN);
   };
 
   const deleteToken = () => {
-    window.localStorage.removeItem("JWTOKEN");
+    window.localStorage.removeItem(JWTOKEN);
   };
 
   // We're not using this function in our project as of the timing of this writing since

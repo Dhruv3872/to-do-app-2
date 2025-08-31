@@ -1,10 +1,12 @@
 import axios from "axios";
 
+import { JWTOKEN } from "@/constants";
+
 const api_base_url = import.meta.env.VITE_API_BASE_URL;
 const api_login_endpoint = import.meta.env.VITE_API_AUTH_LOGIN_ENDPOINT;
 
 export const saveToken = (token) => {
-  window.localStorage.setItem("JWTOKEN", token);
+  window.localStorage.setItem(JWTOKEN, token);
 };
 export const authenticateUser = async (inputFields) => {
   console.log(inputFields);

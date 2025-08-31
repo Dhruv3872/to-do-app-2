@@ -1,35 +1,66 @@
-import { call, put, takeLatest } from "redux-saga/effects";
-import fetchUserToDos from "@/services/ToDoService";
+import { put, takeLatest, call, fork } from "redux-saga/effects";
+import { fetchUserToDos } from "@/services/ToDoService";
 import { saveToken, authenticateUser } from "@/services/AuthService";
+import { fetchOneRandomQuote } from "@/services/QuoteService";
 import { saveToDos } from "@/store/slices/todos/todosSlice";
 import { showMessage } from "@/store/slices/message/messageSlice";
 import { saveUser } from "@/store/slices/user/userSlice";
 
+function* fetchARandomQuote() {
+  const quote_object = yield call(fetchOneRandomQuote);
+  console.log(quote_object.author);
+}
+
 function* fetchAndSaveUserToDos(action) {
-  const todos = yield call(fetchUserToDos, action.payload);
-  yield put(saveToDos(todos));
+  const todos = yield call(fetchUserToDos, action.payload); // Blocking.
+  // We are sending {userId: value} object to the `fetchUserToDos` function.
+  yield put(saveToDos(todos)); // Non-blocking.
+}
+
+function* fetchUserToDosAndAQuote(action) {
+  console.log("inside fetchUserToDosAndAQuote." + action.payload);
+  // The action.payload is {userId: value}.
+  yield fork(fetchAndSaveUserToDos, action);
+  yield fork(fetchARandomQuote);
 }
 
 function* processLoginRequest(action) {
   try {
-    const resp = yield call(authenticateUser, action.payload); // where
+    console.log("Inside processLoginRequest generator function.");
+    const resp = yield call(authenticateUser, action.payload); // Blocking.
     // action.payload would be `inputFields`.
-    // console.log(resp.data);
-    // If the above call succeeds, dispatch 'LOGIN_USER_SUCCEEDED' action:
-    // yield put({ type: "LOGIN_USER_SUCCEEDED", resp: resp });
+    const loginResponseData = resp.data;
+    console.log(loginResponseData.id);
+    // The following code runs upon success response from the Axios call made inside the
+    // authenticateUser function:
+    yield put({
+      type: "USER_TODOS_AND_QUOTE_FETCH_REQUESTED",
+      payload: { userId: loginResponseData.id }, // The payload becomes {userId: value}
+    }); // Non-blocking.
     // Save the token in the local storage and save the username in the user state slice:
-    saveToken(resp.data.accessToken);
-    yield put(saveUser({ username: resp.data.username }));
+    saveToken(loginResponseData.accessToken);
+    // Save user id and username to the App state. We'll use user id to make the next API call,
+    // i.e., fetchUserToDos since the user lands on the Dashboard page which needs to render user To-Dos.
+    yield put(
+      saveUser({
+        id: loginResponseData.id,
+        username: loginResponseData.username,
+      })
+    ); // Non-blocking.
+    // yield fork(fetchAndSaveUserToDos, );
   } catch (e) {
-    // otherwise, dispatch 'LOGIN_USER_FAILED' action:
-    // yield put({ type: "LOGIN_USER_FAILED", message: e.message });
-    yield put(showMessage({ message: e.message, severity: "error" }));
+    //AxiosError or some other app error:
+    // Show the error message to the user using `GlobalMessage` component:
+    yield put(showMessage({ message: e.message, severity: "error" })); // Non-blocking.
   }
 }
 
 function* mySaga() {
-  yield takeLatest("USER_TODOS_FETCH_REQUESTED", fetchAndSaveUserToDos);
-  yield takeLatest("USER_LOGIN_REQUESTED", processLoginRequest);
+  yield takeLatest("USER_LOGIN_REQUESTED", processLoginRequest); // Non-blocking.
+  yield takeLatest(
+    "USER_TODOS_AND_QUOTE_FETCH_REQUESTED",
+    fetchUserToDosAndAQuote
+  ); // Non-blocking.
 }
 
 export default mySaga;

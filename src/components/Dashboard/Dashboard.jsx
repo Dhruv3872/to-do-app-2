@@ -15,7 +15,10 @@ const Dashboard = () => {
 
   useEffect(() => {
     async function fetchAndSave() {
-      dispatch({ type: "USER_TODOS_FETCH_REQUESTED", payload: userId });
+      dispatch({
+        type: "USER_TODOS_AND_QUOTE_FETCH_REQUESTED",
+        payload: { userId: userId },
+      });
       setLoading(false);
     }
     fetchAndSave();
