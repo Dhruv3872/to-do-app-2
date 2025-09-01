@@ -5,11 +5,13 @@ import mySaga from "@/middleware/sagas";
 import todosReducer from "./slices/todos/todosSlice";
 import userReducer from "./slices/user/userSlice";
 import messageReducer from "./slices/message/messageSlice";
+import quoteReducer from "./slices/quote/quoteSlice";
 
 const combinedReducer = combineReducers({
   todos: todosReducer,
   user: userReducer,
   message: messageReducer,
+  quote: quoteReducer,
 });
 
 // rootReducer will help us put a reset app logic in it so that one action can reset

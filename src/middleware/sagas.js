@@ -1,14 +1,16 @@
-import { put, takeLatest, call, fork } from "redux-saga/effects";
+import { put, takeLatest, call, fork, join } from "redux-saga/effects";
 import { fetchUserToDos } from "@/services/ToDoService";
 import { saveToken, authenticateUser } from "@/services/AuthService";
 import { fetchOneRandomQuote } from "@/services/QuoteService";
 import { saveToDos } from "@/store/slices/todos/todosSlice";
 import { showMessage } from "@/store/slices/message/messageSlice";
 import { saveUser } from "@/store/slices/user/userSlice";
+import { saveQuote } from "@/store/slices/quote/quoteSlice";
 
 function* fetchARandomQuote() {
   const quote_object = yield call(fetchOneRandomQuote);
   console.log(quote_object.author);
+  yield put(saveQuote(quote_object));
 }
 
 function* fetchAndSaveUserToDos(action) {
@@ -20,8 +22,10 @@ function* fetchAndSaveUserToDos(action) {
 function* fetchUserToDosAndAQuote(action) {
   console.log("inside fetchUserToDosAndAQuote." + action.payload);
   // The action.payload is {userId: value}.
-  yield fork(fetchAndSaveUserToDos, action);
-  yield fork(fetchARandomQuote);
+  const task1 = yield fork(fetchAndSaveUserToDos, action);
+  const task2 = yield fork(fetchARandomQuote);
+  yield join(task1); // Wait for `task1` to resolve before terminating the Saga.
+  yield join(task2); // Wait for `task2` to resolve before terminating the Saga.
 }
 
 function* processLoginRequest(action) {

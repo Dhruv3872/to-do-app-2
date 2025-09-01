@@ -10,7 +10,11 @@
 
 ## Changes introduced in this commit:
 
-- Added `JWTOKEN` as a constant to the `constants.js` file and  
-  used the constant instead of using typing the string value wherever needed.
-- Added `Redux-saga`'s `fork` model to implement concurrent API calls for  
-  `login` app flow.
+- Reduced the minimum height of the HTML body element in `index.css`to  
+  avoid vertical scrolling. This is because I don't know why the need  
+  for vertical scrolling arises otherwise.
+- Added a quote as a footer on Dashboard to implement `redux-saga fork` and `join` functionality.  
+  Then found out that `getUser` API is call is anyways needed even after login to obtain  
+  the user role info, which would mean that `fetchUserToDos` and `getUser` API calls  
+  could have been forked and joined as well deeming `getQuote` redundant to showcase  
+  the fork and join functionalities; Saved the quote in the `redux` app state.

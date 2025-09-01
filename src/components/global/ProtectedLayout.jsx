@@ -42,9 +42,10 @@ const ProtectedLayout = () => {
       <Container
         sx={{ mt: 8 }} // Since the AppBar component's position
         // in the Header component has been fixed, which means that
-        // we'll have to provide proper margin to avoid overlap between
-        // the Header and the Outlet since the Outlet wouldn't know about
-        // the existence of the Header component.
+        // we'll have to provide proper margin/padding to avoid
+        // an overlap between the Header and the Outlet since
+        // the Outlet wouldn't know about the existence of
+        // the Header component.
       >
         <Outlet />
       </Container>

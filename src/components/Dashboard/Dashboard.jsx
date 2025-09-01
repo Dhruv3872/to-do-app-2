@@ -1,4 +1,11 @@
-import { Grid, List, ListItem, ListItemText, IconButton } from "@mui/material";
+import {
+  Typography,
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+} from "@mui/material";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState, useEffect } from "react";
@@ -12,6 +19,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.id);
   const todos = useSelector((state) => state.todos);
+  const quote_object = useSelector((state) => state.quote);
 
   useEffect(() => {
     async function fetchAndSave() {
@@ -39,41 +47,51 @@ const Dashboard = () => {
     <Grid
       container
       direction="column"
+      justifyContent="space-between"
       elevation={1}
       sx={{
-        width: "100vw", // To take the entire viewport width.
-        height: "100vh", // // To take the entire viewport height.
+        width: "90vw", // To take the entire viewport width.
+        height: "85vh", // // To take the entire viewport height.
       }}
     >
-      {todos.map((todo) => (
-        <List>
-          <ListItem
-            key={todos.indexOf(todo)}
-            divider
-            secondaryAction={
-              <IconButton
-                edge="end"
-                aria-label="delete"
-                onClick={() => handleClickDeleteTask(todo)}
-                sx={{ mb: "2px" }}
+      <Grid>
+        <Grid>
+          {todos.map((todo) => (
+            <List>
+              <ListItem
+                key={todos.indexOf(todo)}
+                divider
+                secondaryAction={
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    onClick={() => handleClickDeleteTask(todo)}
+                    sx={{ mb: "2px" }}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                }
               >
-                <DeleteIcon />
-              </IconButton>
-            }
-          >
-            <ListItemText primary={todo} />
-          </ListItem>
-        </List>
-      ))}
-      <Grid
-        size={12}
-        sx={{
-          textAlign: "center",
-        }}
-      >
-        <IconButton aria-label="Add a task" onClick={handleClickAddTask}>
-          <AddCircleOutlineOutlinedIcon />
-        </IconButton>
+                <ListItemText primary={todo} />
+              </ListItem>
+            </List>
+          ))}
+        </Grid>
+        <Grid
+          size={12}
+          sx={{
+            textAlign: "center",
+          }}
+        >
+          <IconButton aria-label="Add a task" onClick={handleClickAddTask}>
+            <AddCircleOutlineOutlinedIcon />
+          </IconButton>
+        </Grid>
+      </Grid>
+      <Grid sx={{ textAlign: "center", borderTop: "1px solid #ccc" }}>
+        <Typography variant="body2" color="text.secondary">
+          {quote_object.quote}- {quote_object.author}
+        </Typography>
       </Grid>
       <AddTask open={open} onCancel={handleClose} />
     </Grid>
