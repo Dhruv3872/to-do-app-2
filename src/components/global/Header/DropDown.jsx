@@ -19,11 +19,10 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 // Local imports:
-import useAuth from "@/services/useAuth";
+import { logout } from "@/services/authService";
 import { useSelector } from "react-redux";
 
 const DropDown = () => {
-  const { logout } = useAuth();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const user = useSelector((state) => state.user);

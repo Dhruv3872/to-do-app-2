@@ -1,7 +1,7 @@
 import { put, takeLatest, call, fork, join } from "redux-saga/effects";
-import { fetchUserToDos } from "@/services/ToDoService";
-import { saveToken, authenticateUser, getUser } from "@/services/AuthService";
-import { fetchOneRandomQuote } from "@/services/QuoteService";
+import { fetchUserToDos } from "@/services/todoService";
+import { saveToken, authenticateUser, getUser } from "@/services/authService";
+import { fetchOneRandomQuote } from "@/services/quoteService";
 import { saveToDos } from "@/store/slices/todos/todosSlice";
 import { showMessage } from "@/store/slices/message/messageSlice";
 import { saveUser } from "@/store/slices/user/userSlice";
@@ -71,7 +71,7 @@ function* mySaga() {
     USER_TODOS_AND_QUOTE_FETCH_REQUESTED,
     fetchUserToDosAndAQuote
   ); // Non-blocking.
-  yield takeLatest("GET_USER_REQUESTED", getUser); // Non-blocking.
+  // yield takeLatest("GET_USER_REQUESTED", getUser); // Non-blocking.
 }
 
 export default mySaga;

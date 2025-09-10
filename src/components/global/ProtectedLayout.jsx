@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation } from "react-router";
-import { getUser } from "@/services/AuthService";
+import { getUser } from "@/services/authService";
 import { useDispatch } from "react-redux";
 import { saveUser } from "@/store/slices/user/userSlice";
 
