@@ -26,7 +26,9 @@ const DropDown = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-  const firstName = useSelector((state) => state.user.firstName);
+  const user = useSelector((state) => state.user);
+  const firstName = user.firstName;
+  const role = user.role;
   const open = Boolean(anchorEl);
 
   const handleMenuClick = (event) => {
@@ -99,7 +101,12 @@ const DropDown = () => {
       >
         <MenuItem>
           <AccountCircleOutlinedIcon />{" "}
-          <Typography sx={{ ml: 2 }}>{firstName}</Typography>
+          <Grid>
+            <Typography sx={{ ml: 2 }}>{firstName}</Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ ml: 2 }}>
+              {role} {/* user role */}
+            </Typography>
+          </Grid>
         </MenuItem>
         <MenuItem onClick={handleMembersClick}>
           <PeopleOutlinedIcon /> <Typography sx={{ ml: 2 }}>Members</Typography>

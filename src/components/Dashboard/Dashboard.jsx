@@ -11,23 +11,24 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddTask from "./AddTask";
+import Loading from "../global/Loading";
 import { deleteToDo } from "@/store/slices/todos/todosSlice";
+import { USER_TODOS_AND_QUOTE_FETCH_REQUESTED } from "@/constants";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.user.id);
   const todos = useSelector((state) => state.todos);
   const quote_object = useSelector((state) => state.quote);
+  const loading = useSelector((state) => state.loading);
 
   useEffect(() => {
     async function fetchAndSave() {
       dispatch({
-        type: "USER_TODOS_AND_QUOTE_FETCH_REQUESTED",
+        type: USER_TODOS_AND_QUOTE_FETCH_REQUESTED,
         payload: { userId: userId },
       });
-      setLoading(false);
     }
     fetchAndSave();
   }, []);
@@ -42,7 +43,7 @@ const Dashboard = () => {
     dispatch(deleteToDo(todo));
   };
   return loading ? (
-    <p>Loading to-do list...</p>
+    <Loading />
   ) : (
     <Grid
       container

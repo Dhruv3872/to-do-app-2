@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation } from "react-router";
-import useAuth from "@/services/useAuth";
+import { getUser } from "@/services/AuthService";
 import { useDispatch } from "react-redux";
 import { saveUser } from "@/store/slices/user/userSlice";
 
@@ -18,7 +18,6 @@ const ProtectedLayout = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const { getUser } = useAuth();
   useEffect(() => {
     async function setAuthentication() {
       const user = await getUser();

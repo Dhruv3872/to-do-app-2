@@ -6,12 +6,20 @@ import {
   Typography,
   Grid,
   Link,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 import LockOutlineIcon from "@mui/icons-material/LockOutline";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useDispatch } from "react-redux";
+import { USER_LOGIN_REQUESTED } from "@/constants";
+import { useState } from "react";
 
 const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleLogin = async (event) => {
     event.preventDefault();
     console.log(event.currentTarget);
@@ -22,7 +30,7 @@ const LoginForm = () => {
       password: formData.get("password"),
     };
     console.log(inputFields);
-    dispatch({ type: "USER_LOGIN_REQUESTED", payload: inputFields });
+    dispatch({ type: USER_LOGIN_REQUESTED, payload: inputFields });
   };
   return (
     <Grid
@@ -77,10 +85,28 @@ const LoginForm = () => {
             fullWidth
             name="password"
             label="Password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             autoComplete="current-password"
             sx={{ mb: "20px" }}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label={
+                        showPassword
+                          ? "Hide the password"
+                          : "Display the password"
+                      }
+                      onClick={handleClickShowPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
           />
           <Button
             type="submit"
