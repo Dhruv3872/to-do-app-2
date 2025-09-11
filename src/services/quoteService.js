@@ -13,6 +13,7 @@ export const fetchOneRandomQuote = async () => {
     headers: { Authorization: `Bearer ${token}` },
   });
   console.log(resp.data.quote);
+  console.log(resp.data.author);
   return resp.data; // We'll use the 'quote'and 'author' properties of this object.
 };
 

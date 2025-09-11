@@ -11,7 +11,7 @@ export const saveToken = (token) => {
   window.localStorage.setItem(JWTOKEN, token);
 };
 
-const getToken = () => {
+export const getToken = () => {
   return window.localStorage.getItem(JWTOKEN);
 };
 
@@ -31,10 +31,13 @@ export const authenticateUser = async (inputFields) => {
 
 // Log the user out:
 export const logout = () => {
+  console.log("Executing logout..");
   // Delete the JWT access token from the browser:
   deleteToken();
   // Reset the entire app state:
   dispatchAction({ type: "RESET_APP" });
+  // window.location.assign("/login"); // Not the right way of doing things
+  // inside a React app.
 };
 
 // Get the current user by making an API call to dummyjson with the JWT access token

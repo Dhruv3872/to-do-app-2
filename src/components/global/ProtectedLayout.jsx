@@ -1,12 +1,13 @@
 import { Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation } from "react-router";
-import { getUser } from "@/services/authService";
+import { getUser, logout } from "@/services/authService";
 import { useDispatch } from "react-redux";
+
 import { saveUser } from "@/store/slices/user/userSlice";
 
 import Header from "@/components/global/Header/Header";
-
+import Loading from "@/components/global/Loading";
 const routeTitles = {
   "/dashboard": "My To-Do List",
   "/members": "Members",
@@ -27,6 +28,8 @@ const ProtectedLayout = () => {
         dispatch(saveUser(user));
         setAuthenticated(true);
         console.log("The user exists.");
+      } else {
+        logout();
       }
       setLoading(false);
     }
@@ -34,7 +37,7 @@ const ProtectedLayout = () => {
   }, []);
   const title = routeTitles[location.pathname || "My To-Do List"];
   return loading ? (
-    <p>Checking authentication...</p>
+    <Loading />
   ) : authenticated ? (
     <>
       <Header title={title} />

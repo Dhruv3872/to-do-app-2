@@ -10,5 +10,4 @@
 
 ## Changes introduced in this commit:
 
-- Renamed the services following PascalCase to follow camelCase since that is  
-  more appropriate for files that are not React comopnents in a React project.
+- Added `Loading` component in `ProtectedLayout` component.
