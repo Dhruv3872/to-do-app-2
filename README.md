@@ -10,4 +10,8 @@
 
 ## Changes introduced in this commit:
 
-- Added `Loading` component in `ProtectedLayout` component.
+- Added `navigationService` to enable using navigation outside  
+  React components and hooks using `react-router`'s `useNavigate`.
+- Implemented the necessary logic for it in `App.jsx`.
+- Used this way of navigation in `authService` for navigation after  
+  logout and in `sagas.js` for navigation after login.

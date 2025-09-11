@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { JWTOKEN } from "@/constants";
 import { dispatchAction } from "./dispatchService";
+import { navigate } from "./navigationService";
 
 const api_base_url = import.meta.env.VITE_API_BASE_URL;
 const api_login_endpoint = import.meta.env.VITE_API_AUTH_LOGIN_ENDPOINT;
@@ -36,6 +37,7 @@ export const logout = () => {
   deleteToken();
   // Reset the entire app state:
   dispatchAction({ type: "RESET_APP" });
+  navigate("/login");
   // window.location.assign("/login"); // Not the right way of doing things
   // inside a React app.
 };

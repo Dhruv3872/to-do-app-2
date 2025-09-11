@@ -1,7 +1,10 @@
 import { put, takeLatest, call, fork, join } from "redux-saga/effects";
+
 import { fetchUserToDos } from "@/services/todoService";
 import { saveToken, authenticateUser, getUser } from "@/services/authService";
 import { fetchOneRandomQuote } from "@/services/quoteService";
+import { navigate } from "@/services/navigationService";
+
 import { saveToDos } from "@/store/slices/todos/todosSlice";
 import { showMessage } from "@/store/slices/message/messageSlice";
 import { saveUser } from "@/store/slices/user/userSlice";
@@ -58,6 +61,7 @@ function* processLoginRequest(action) {
       })
     ); // Non-blocking.
     yield join(task1); // Wait for the call to complete.
+    navigate("/dashboard");
   } catch (e) {
     //AxiosError or some other app error:
     // Show the error message to the user using `GlobalMessage` component:

@@ -10,9 +10,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     {/*  Provide the store to the entire app: */}
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <App />
     </Provider>
   </StrictMode>
 );
