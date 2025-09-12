@@ -11,7 +11,7 @@ import {
 } from "react-router";
 import Register from "./components/auth/Register/Register";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Members from "./components/Members";
+import Members from "./components/Members/Members";
 import ProtectedLayout from "./components/global/ProtectedLayout";
 import PublicRoutes from "./components/global/PublicRoutes";
 import GlobalMessage from "./components/global/GlobalMessage";
